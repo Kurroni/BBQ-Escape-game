@@ -71,14 +71,17 @@ function main() {
 
 
     // -- Setting the game state 
-
+    
     function startGame() {
         removeSplashScreen();
-
-        var gameScreen = createGameScreen();
+        
+        //var gameScreen = createGameScreen();
+        
+        game = new Game();
+        game.gameScreen = createGameScreen();
+        game.start();
     };
 
-    function gameOver() {};
 
 
     // -- initialize Splash screen on initial start
