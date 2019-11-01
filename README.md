@@ -19,7 +19,7 @@ moving off the screen's edge on the left side - appearing on the right edge of t
 
 
 ## Data structure
-#main.js
+### main.js
 
 buildSplashScreen(){
 }
@@ -29,10 +29,49 @@ buildGameScreen(){
 
 buildGameOverScreen(){
 }
+### game.js
 
+Game(){
+  this.canvas;
+}
+
+Game.prototype.startLoop(){
+}
+
+Game.prototype.clearCanvas = function(){
+}
+
+Game.prototype.updateCanvas = function(){
+}
+
+Game.prototype.drawCanvas = function(){ 
+}
+
+Game.prototype.checkCollisions = function {
+}
+
+Game.prototype.setGameOver = function(){
+}
+### enemy.js
+
+Enemy() {}
+
+Enemy.prototype.draw = function() {}
+
+Enemy.prototype.updatePosition = function() {}
+
+Enemy.prototype.isInsideScreen = function() {}
+### player.js
+
+Player() {}
+
+Player.prototype.setDirection = function(direction) {}
+
+Player.prototype.didCollide = function(enemy) {}
+
+Player.prototype.handleScreenCollision = function() {}
 
 ## States y States Transitions
-Definition of the different states and their transition (transition functions)
 
 - splashScreen()
   - buildSplash()
@@ -50,22 +89,40 @@ Definition of the different states and their transition (transition functions)
 
 
 ## Task
-Task definition in order of priority
-
+Main - buildDom
+Main - buildSplashScreen
+Main - addEventListener
+Main - buildGameScreen
+Main - buildGameOverScreen
+Game - buildCanvas
+Game - startLoop function
+Game - clearCanvas
+Game - updateCanvas
+Game - drawCanvas
+Game - setGameOver
+Game - collision
+Game - addEventListener
+Enemy - create
+Enemy - update position
+Player - create
+Player - set direction
+Player - did collide
+Player - handle collision
+Game - checkOverFlow
 
 ## Links
 
 
 ### Trello
-[Link url](https://trello.com)
+[Link url](https://trello.com/b/6pc8tlRk/bbq-escape)
 
 
 ### Git
 URls for the project repo and deploy
-[Link Repo](http://github.com)
-[Link Deploy](http://github.com)
+[Link Repo](#)
+[Link Deploy](#)
 
 
 ### Slides
 URls for the project presentation (slides)
-[Link Slides.com](http://slides.com)
+[Link Slides.com](#)
