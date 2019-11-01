@@ -9,12 +9,12 @@ CANVAS, This is a game where the player can move left and rigth and avoid the en
 
 
 ## Backlog
-Score
-Speed Level
-More enemies
-Bonus - extra points
-2 lives
-moving off the screen's edge on the left side - appearing on the right edge of the screen
+- Score
+- Speed Level
+- More enemies
+- Bonus - extra points for get the ketchup
+- 2 lives
+- Moving off the screen's edge on the left side - appearing on the right edge of the screen
 
 
 
@@ -89,26 +89,25 @@ Player.prototype.handleScreenCollision = function() {}
 
 
 ## Task
-Main - buildDom
-Main - buildSplashScreen
-Main - addEventListener
-Main - buildGameScreen
-Main - buildGameOverScreen
-Game - buildCanvas
-Game - startLoop function
-Game - clearCanvas
-Game - updateCanvas
-Game - drawCanvas
-Game - setGameOver
-Game - collision
-Game - addEventListener
-Enemy - create
-Enemy - update position
-Player - create
-Player - set direction
-Player - did collide
-Player - handle collision
-Game - checkOverFlow
+- Main - buildDom
+- Main - buildSplashScreen
+- Main - addEventListener
+- Main - buildGameScreenain - buildGameOverScreen
+- Game - buildCanvas
+- Game - startLoop function
+- Game - clearCanvas
+- Game - updateCanvas
+- Game - drawCanvas
+- Game - setGameOver
+- Game - collision
+- Game - addEventListener
+- Enemy - create
+- Enemy - update position
+- Player - create
+- Player - set direction
+- Player - did collide
+- Player - handle collision
+- Game - checkOverFlow
 
 ## Links
 
