@@ -39,6 +39,7 @@ function main() {
   function createGameScreen() {
     var gameScreen = buildDom(`
         <main class="game container">
+        <h1 class="game-screen-title">BBQ Escape</h1>
         <header>
           <div class="lives">
             <span class="label">Lives:</span>
