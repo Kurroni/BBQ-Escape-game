@@ -16,7 +16,7 @@ Enemy.prototype.draw = function () {
         this.x,
         this.y,
         this.size,
-        this.size,
+        this.size * 2,
     );
 };
 
@@ -26,5 +26,5 @@ Enemy.prototype.updatePosition = function () {
 
 Enemy.prototype.isInsideScreen = function () {
     // if x plus half of its size is smaller then 0 return
-    return this.y - this.size / 2 < 0;
+    return this.y - this.size / 2 < this.canvas.height;
 };
