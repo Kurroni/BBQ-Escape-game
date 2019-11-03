@@ -1,16 +1,16 @@
 'use strict';
 
-function Enemy(canvas, x, speed) {
+function Ketchup(canvas, x, speed) {
     this.canvas = canvas;
     this.ctx = canvas.getContext('2d');
-    this.size = 80;
+    this.size = 15;
     this.x = x;
     this.y = 0 - this.size;
     this.speed = speed;
 }
 
-Enemy.prototype.draw = function () {
-    this.ctx.fillStyle = '#FF6F27';
+Ketchup.prototype.draw = function () {
+    this.ctx.fillStyle = 'red';
     // fillRect(x, y, width, height)
     this.ctx.fillRect(
         this.x,
@@ -20,11 +20,11 @@ Enemy.prototype.draw = function () {
     );
 };
 
-Enemy.prototype.updatePosition = function () {
+Ketchup.prototype.updatePosition = function () {
     this.y = this.y + this.speed;
 };
 
-Enemy.prototype.isInsideScreen = function () {
+Ketchup.prototype.isInsideScreen = function () {
     // if x plus half of its size is smaller then 0 return
     return this.y - this.size / 2 < this.canvas.height;
 };

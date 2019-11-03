@@ -112,9 +112,10 @@ Game.prototype.checkCollisions = function () {
             // Move the enemy off screen to the left
             enemy.y = this.canvas.height + enemy.size;
 
-            if (this.player.lives === 0) {
-                this.gameOver();
-            }
+            //after styling game screen - uncomment!!!
+            // if (this.player.lives === 0) {
+            //     this.gameOver();
+            // }
         }
     }, this);
 

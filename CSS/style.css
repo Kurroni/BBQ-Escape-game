@@ -37,11 +37,12 @@ p {
 html,
 body {
     height: 100%;
+    background-image: url(../img/backyard-clipart-bbq-party-clipart-1.jpg);
 }
 
 .container {
     margin: 0 20px;
-    height: 100%;
+
 }
 
 @media (min-width: 768px) {
@@ -53,51 +54,6 @@ body {
 
 
 /* ---- components ---- */
-
-.game {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-}
-
-.game header {
-    height: 50px;
-    display: flex;
-    align-items: center;
-}
-
-.game .lives {
-    flex: 1;
-}
-
-.game .score {
-    flex: 1;
-}
-
-.game canvas {
-    height: 500px;
-    border: 2px solid black;
-}
-
-.game .label {
-    font-weight: bold;
-}
-
-.game .value {
-    font-style: italic;
-}
-
-.game .canvas-container {
-    height: 500px;
-    flex: 1;
-    margin: 0 auto;
-}
-
-main.game-over {
-    height: 100%;
-}
-
 .start-container {
     display: flex;
     flex-direction: column;
@@ -122,4 +78,56 @@ main.game-over {
     border-radius: 20px;
     padding: 10px;
     margin: 200px auto 50px;
+}
+
+.game {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.game header {
+    height: 50px;
+    display: flex;
+    align-items: center;
+}
+
+.game .lives {
+    flex: 1;
+}
+
+.game .score {
+    flex: 1;
+}
+
+.game canvas {
+    width: 600px;
+    height: 800px;
+    border: 2px solid black;
+}
+
+.game .label {
+    font-weight: bold;
+}
+
+.game .value {
+    font-style: italic;
+}
+
+.game .canvas-container {
+    flex: 1;
+    margin: 0 auto;
+}
+
+main.game.container {
+    background-color: rgba(30, 202, 30, 0.815);
+}
+
+
+
+
+
+main.game-over {
+    height: 100%;
 }
