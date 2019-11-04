@@ -12,7 +12,7 @@ function Enemy(canvas, x, speed) {
 }
 
 Enemy.prototype.draw = function () {
-    this.image.src = '../img/red+fork.png';
+    this.image.src = './img/red+fork.png';
     this.ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
     // this.ctx.fillStyle = '#FF6F27';
     // // fillRect(x, y, width, height)

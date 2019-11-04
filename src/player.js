@@ -4,8 +4,8 @@ function Player(canvas, lives) {
     this.canvas = canvas;
     this.ctx = this.canvas.getContext('2d');
     this.lives = lives;
-    this.width = 80;
-    this.height = 60;
+    this.width = 70;
+    this.height = 55;
     this.x = canvas.width / 2;
     this.y = canvas.height - this.height - 30;
     this.direction = 0;
@@ -117,6 +117,6 @@ Player.prototype.removeLife = function () {
 // }
 
 Player.prototype.draw = function () {
-    this.image.src = '../img/eyes-burger.png';
+    this.image.src = './img/hamburger_cut.png';
     this.ctx.drawImage(this.image, this.x, this.y, this.width, this.height)
 };
