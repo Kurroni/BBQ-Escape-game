@@ -42,13 +42,16 @@ Player.prototype.didCollide = function (enemy) {
     var enemyBottom = enemy.y + enemy.size * 2;
 
     // Check if the enemy intersects any of the player's sides
-    var crossLeft = enemyLeft <= playerRight && enemyLeft >= playerLeft;
+    // var crossLeft = enemyLeft <= playerRight && enemyLeft >= playerLeft;
+    var crossLeft = enemyLeft <= playerRight && enemyRight >= playerRight;
 
-    var crossRight = enemyRight >= playerLeft && enemyRight <= playerRight;
+    // var crossRight = enemyRight >= playerLeft && enemyRight <= playerRight;
+    var crossRight = enemyRight >= playerRight && enemyLeft <= playerRight;
 
     var crossBottom = enemyBottom >= playerTop && enemyBottom < playerBottom;
 
-    var crossTop = enemyTop <= playerBottom && enemyTop >= playerTop;
+    // var crossTop = enemyTop <= playerBottom && enemyTop >= playerTop;
+    var crossTop = enemyTop <= playerBottom && enemyBottom >= playerTop;
 
     if ((crossLeft || crossRight) && (crossTop || crossBottom)) {
         return true;

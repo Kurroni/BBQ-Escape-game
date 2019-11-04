@@ -113,9 +113,9 @@ Game.prototype.checkCollisions = function () {
             enemy.y = this.canvas.height + enemy.size;
 
             //after styling game screen - uncomment!!!
-            // if (this.player.lives === 0) {
-            //     this.gameOver();
-            // }
+            if (this.player.lives === 0) {
+                this.gameOver();
+            }
         }
     }, this);
 

@@ -72,7 +72,7 @@ function main() {
         <main class="game-over">
           <h1>Game over</h1>
           <p>Your score: <span></span></p>
-          <button>Restart</button>
+          <button class="btn-restart">Restart</button>
         </main>
       `);
 
