@@ -5,6 +5,7 @@ function Game() {
     this.ctx = null;
     this.enemies = [];
     this.player = null;
+    this.ketchups = [];
     this.gameIsOver = false;
     this.gameScreen = null;
     this.score = 0;
@@ -55,9 +56,16 @@ Game.prototype.startLoop = function () {
 
         // 1. Create new enemies randomly
         if (Math.random() > 0.98) {
-            var randomX = this.canvas.width * Math.random();
+            var randomX = (this.canvas.width - 100) * Math.random();
             var newEnemy = new Enemy(this.canvas, randomX, 5);
             this.enemies.push(newEnemy);
+        }
+
+        //i'm adding ketchup
+        if (Math.random() > 0.99) {
+            var randomX = this.canvas.width * Math.random();
+            var newKetchup = new Ketchup(this.canvas, randomX, 6);
+            this.ketchups.push(newKetchup);
         }
 
         // 2. Check if player had hit any enemy (check all enemies)
@@ -73,6 +81,12 @@ Game.prototype.startLoop = function () {
             return enemy.isInsideScreen();
         });
 
+        //ketchup code
+        this.ketchups = this.ketchups.filter(function (ketchup) {
+            ketchup.updatePosition();
+            return ketchup.isInsideScreen();
+        });
+
 
         // 2. CLEAR THE CANVAS
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -86,6 +100,10 @@ Game.prototype.startLoop = function () {
         this.enemies.forEach(function (enemy) {
             enemy.draw();
         });
+        this.ketchups.forEach(function (ketchup) {
+            ketchup.draw();
+        });
+
 
         // 4. TERMINATE LOOP IF GAME IS OVER
         if (!this.gameIsOver) {
@@ -119,11 +137,24 @@ Game.prototype.checkCollisions = function () {
         }
     }, this);
 
+    //adding ketchup collision
+    this.ketchups.forEach(function (ketchup) {
+        if (this.player.didCollide(ketchup)) {
+            console.log('Ketchup collision')
+            this.score += 2000;
+
+            // Move the ketchup off screen to the bottom
+            ketchup.y = this.canvas.height + ketchup.size;
+        }
+    }, this);
+
 };
+
 
 
 Game.prototype.updateGameStats = function () {
     this.score += 1;
+
     this.livesElement.innerHTML = this.player.lives;
     this.scoreElement.innerHTML = this.score;
 };
