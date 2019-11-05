@@ -18,9 +18,10 @@ function main() {
   function createSplashScreen() {
     splashScreen = buildDom(`
     <main class="start-container">
-      <h1 class="start-header">BigBaQyard Escape</h1>
-      <button class="start-button">Start</button>
-    </main>
+      <h1 class="start-header"><a href="https://fontmeme.com/hungry-hungry-hippos-font/"><img src="https://fontmeme.com/permalink/191105/66b052c755e75bdf937aa1d462c49024.png" alt="hungry-hungry-hippos-font" border="0"></a></h1>
+      <button class="start-button">run!</button>
+         </main>
+   
         `);
     document.body.appendChild(splashScreen);
 
@@ -70,9 +71,9 @@ function main() {
   function createGameOverScreen(score) {
     gameOverScreen = buildDom(`
         <main class="game-over">
-          <h1>Game over</h1>
+          <h1>You've been eaten</h1>
           <p>Your score: <span></span></p>
-          <button class="btn-restart">Restart</button>
+          <button class="btn-restart">try again</button>
         </main>
         <footer>
         <div>Icons made by <a href="https://www.flaticon.com/authors/roundicons" title="Roundicons">Roundicons</a> from <a href="https://www.flaticon.com/"             title="Flaticon">www.flaticon.com</a></div>
