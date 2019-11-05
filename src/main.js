@@ -18,11 +18,29 @@ function main() {
   function createSplashScreen() {
     splashScreen = buildDom(`
     <main class="start-container">
+    <img class="redneck-start" src="../img/red+fork (1)Right.blured.png">
       <h1 class="start-header"><a href="https://fontmeme.com/hungry-hungry-hippos-font/"><img src="https://fontmeme.com/permalink/191105/66b052c755e75bdf937aa1d462c49024.png" alt="hungry-hungry-hippos-font" border="0"></a></h1>
+      <div class="rules-container">
+      <div class="run">
+        <p>
+          run:
+        </p>
+        <i class="fas fa-chevron-left"></i>
+        <i class="fas fa-chevron-right"></i>
+      </div>
+      <div class="thumb-up">
+        <i class="far fa-thumbs-up">:</i>
+        <img src="./img/ketchup.png" alt="">
+      </div>
+      <div class="thumb-down">
+        <i class="far fa-thumbs-down">:</i>
+        <img src="./img/redneck cut.png" alt="mad redneck character">
+        <img src="./img/bull terrier.png" alt="bullterrier">
+      </div>
+      </div>
       <button class="start-button">run!</button>
          </main>
-   
-        `);
+           `);
     document.body.appendChild(splashScreen);
 
     var startButton = splashScreen.querySelector('button');
