@@ -6,6 +6,7 @@ function Game() {
     this.enemies = [];
     this.player = null;
     this.ketchups = [];
+    this.dogs = [];
     this.gameIsOver = false;
     this.gameScreen = null;
     this.score = 0;
@@ -55,17 +56,22 @@ Game.prototype.startLoop = function () {
     var loop = function () {
 
         // 1. Create new enemies randomly
-        if (Math.random() > 0.98) {
-            var randomX = (this.canvas.width - 100) * Math.random();
-            var newEnemy = new Enemy(this.canvas, randomX, 5);
+        if (Math.random() > 0.985) {
+            var randomX = (this.canvas.width - 90) * Math.random();
+            var newEnemy = new Enemy(this.canvas, randomX, 3);
             this.enemies.push(newEnemy);
         }
 
         //i'm adding ketchup
-        if (Math.random() > 0.99) {
+        if (Math.random() > 0.996) {
             var randomX = this.canvas.width * Math.random();
-            var newKetchup = new Ketchup(this.canvas, randomX, 6);
+            var newKetchup = new Ketchup(this.canvas, randomX, 5);
             this.ketchups.push(newKetchup);
+        }
+        if (Math.random() > 0.998) {
+            var randomX = (this.canvas.width - 90) * Math.random();
+            var newDog = new Dog(this.canvas, randomX, 4);
+            this.dogs.push(newDog);
         }
 
         // 2. Check if player had hit any enemy (check all enemies)
@@ -86,6 +92,10 @@ Game.prototype.startLoop = function () {
             ketchup.updatePosition();
             return ketchup.isInsideScreen();
         });
+        this.dogs = this.dogs.filter(function (dog) {
+            dog.updatePosition();
+            return dog.isInsideScreen();
+        });
 
 
         // 2. CLEAR THE CANVAS
@@ -103,7 +113,9 @@ Game.prototype.startLoop = function () {
         this.ketchups.forEach(function (ketchup) {
             ketchup.draw();
         });
-
+        this.dogs.forEach(function (dog) {
+            dog.draw();
+        });
 
         // 4. TERMINATE LOOP IF GAME IS OVER
         if (!this.gameIsOver) {
@@ -128,7 +140,7 @@ Game.prototype.checkCollisions = function () {
             console.log('lives', this.player.lives);
 
             // Move the enemy off screen to the left
-            enemy.y = this.canvas.height + enemy.size;
+            enemy.y = this.canvas.height + enemy.offsetHeight;
 
             //after styling game screen - uncomment!!!
             if (this.player.lives === 0) {
@@ -148,6 +160,22 @@ Game.prototype.checkCollisions = function () {
         }
     }, this);
 
+    this.dogs.forEach(function (dog) {
+
+        if (this.player.didCollide(dog)) {
+
+            this.player.removeLife();
+            console.log('lives', this.player.lives);
+
+            // Move the dog off screen to the left
+            dog.y = this.canvas.height + dog.height;
+
+            //after styling game screen - uncomment!!!
+            if (this.player.lives === 0) {
+                this.gameOver();
+            }
+        }
+    }, this);
 };
 
 
