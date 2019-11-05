@@ -41,7 +41,7 @@ Player.prototype.didCollide = function (enemy) {
     var enemyLeft = enemy.x;
     var enemyRight = enemy.x + enemy.width;
     var enemyTop = enemy.y;
-    var enemyBottom = enemy.y + enemy.height * 2;
+    var enemyBottom = enemy.y + enemy.height;
 
     // Check if the enemy intersects any of the player's sides
     var crossLeft = enemyLeft <= playerRight && enemyLeft >= playerLeft;
@@ -70,7 +70,7 @@ Player.prototype.didCollide = function (ketchup) {
     var ketchupLeft = ketchup.x;
     var ketchupRight = ketchup.x + ketchup.width;
     var ketchupTop = ketchup.y;
-    var ketchupBottom = ketchup.y + ketchup.width * 2;
+    var ketchupBottom = ketchup.y + ketchup.height;
 
     var crossLeft = ketchupLeft <= playerRight && ketchupLeft >= playerLeft;
     // var crossLeft = ketchupLeft <= playerRight && ketchupLeft >= playerLeft;
@@ -81,6 +81,35 @@ Player.prototype.didCollide = function (ketchup) {
     var crossBottom = ketchupBottom >= playerTop && ketchupBottom <= playerBottom;
 
     var crossTop = ketchupTop <= playerBottom && ketchupTop >= playerTop;
+
+    if (
+        (crossLeft || crossRight) && (crossTop || crossBottom)) {
+        return true;
+    }
+    return false;
+};
+
+// DOG
+Player.prototype.didCollide = function (dog) {
+    var playerLeft = this.x;
+    var playerRight = this.x + this.width;
+    var playerTop = this.y;
+    var playerBottom = this.y + this.height;
+
+    var dogLeft = dog.x;
+    var dogRight = dog.x + dog.width;
+    var dogTop = dog.y;
+    var dogBottom = dog.y + dog.height;
+
+    var crossLeft = dogLeft <= playerRight && dogLeft >= playerLeft;
+    // var crossLeft = dogLeft <= playerRight && dogLeft >= playerLeft;
+
+    var crossRight = dogRight >= playerLeft && dogRight <= playerRight;
+    // var crossRight = dogRight >= playerRight && dogLeft <= playerRight;
+
+    var crossBottom = dogBottom >= playerTop && dogBottom <= playerBottom;
+
+    var crossTop = dogTop <= playerBottom && dogTop >= playerTop;
 
     if ((crossLeft || crossRight) && (crossTop || crossBottom)) {
         return true;
@@ -104,8 +133,11 @@ Player.prototype.handleScreenCollision = function () {
     var screenRight = this.canvas.width;
 
     // how to stop the edge of the player exactly with the edge of the screen?
-    if (this.x > (screenRight - this.width)) this.x = screenRight - this.width;
-    else if (this.x <= screenLeft) this.x = 0;
+    if (this.x + this.width / 2 > screenRight) {
+        this.x = (screenLeft - this.width / 2);
+    } else if (this.x + this.width / 2 < screenLeft) {
+        this.x = screenRight + this.x / 2;
+    }
 };
 
 Player.prototype.removeLife = function () {
