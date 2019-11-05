@@ -54,8 +54,10 @@ Player.prototype.didCollide = function (enemy) {
 
     var crossTop = enemyTop <= playerBottom && enemyTop >= playerTop;
     //var crossTop = enemyTop <= playerBottom && enemyBottom >= playerTop;
+    var crossInside = enemyLeft <= playerLeft && enemyRight >= playerRight;
 
-    if ((crossLeft || crossRight) && (crossTop || crossBottom)) {
+
+    if ((crossInside || crossLeft || crossRight) && (crossTop || crossBottom)) {
         return true;
     }
     return false;
@@ -111,7 +113,9 @@ Player.prototype.didCollide = function (dog) {
 
     var crossTop = dogTop <= playerBottom && dogTop >= playerTop;
 
-    if ((crossLeft || crossRight) && (crossTop || crossBottom)) {
+    var crossInside = dogLeft <= playerLeft && dogRight >= playerRight;
+
+    if ((crossInside || crossLeft || crossRight) && (crossTop || crossBottom)) {
         return true;
     }
     return false;
