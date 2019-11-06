@@ -12,6 +12,8 @@ function main() {
   var splashScreen; // Start Screen
   var gameOverScreen;
   var playersName;
+  var toLeaderboard = [];
+  var scorePlayer;
 
   // -- splash screen
 
@@ -97,13 +99,46 @@ function main() {
     gameOverScreen = buildDom(`
         <main class="game-over">
           <h1>You've been eaten!</h1>
-          <div><p class="game-player-name"></p><br><p>Your score is:</p><span></span></div>
+          <div class="player-score.container"><p class="game-player-name"></p><br><p>Your score is:</p><span></span></div>
+          <div class = "leaderboardcontainter">
+            <div>
+              <ol class = "leaderboardlist" id = "name">
+                <header>Top Players</header>
+                  <li>________</li>
+                  <li>________</li>
+                  <li>________</li>
+                  <li>________</li>
+                  <li>________</li>
+                  <li>________</li>
+                  <li>________</li>
+                  <li>________</li>
+                  <li>________</li>
+                  <li>________</li>
+              </ol>
+            </div>
+            <div>
+              <ol class = "secondleaderboardlist" id = "score">
+                <header>Score</header>
+                  <li>________</li>
+                  <li>________</li>
+                  <li>________</li>
+                  <li>________</li>
+                  <li>________</li>
+                  <li>________</li>
+                  <li>________</li>
+                  <li>________</li>
+                  <li>________</li>
+                  <li>________</li>
+              </ol>
+            </div>
           <button class="btn-restart">try again</button>
         </main>
         <footer>
         <div>Icons made by <a href="https://www.flaticon.com/authors/roundicons" title="Roundicons">Roundicons</a> from <a href="https://www.flaticon.com/"             title="Flaticon">www.flaticon.com</a></div>
         </footer>
       `);
+
+
 
     var button = gameOverScreen.querySelector("button");
     button.addEventListener("click", startGame);
@@ -112,6 +147,7 @@ function main() {
     span.innerText = score;
 
     document.body.appendChild(gameOverScreen);
+    setLeaderboard(toLeaderboard);
 
     var gamePlayerName = document.querySelector('.game-player-name');
     gamePlayerName.innerHTML = playersName;
@@ -141,7 +177,8 @@ function main() {
     // End the game
     game.passGameOverCallback(function () {
       // <-- UPDATE
-      gameOver(game.score); // <-- UPDATE
+      gameOver(game.score);
+      updateScore(); // <-- UPDATE
     }); //	<-- UPDATE
   }
 
@@ -153,9 +190,59 @@ function main() {
     if (playersName == '') {
       playersName = 'the guest';
     }
-
-    console.log('players name:', playersName);
   }
+  //below Griffith's code for leader board
+  function updateScore() {
+    var lastPlayer = {
+      name: name,
+      score: scorePlayer
+    };
+    var scoreString = localStorage.getItem('score');
+    if (!scoreString) {
+      var scoreArray = []
+      scoreArray.push(lastPlayer);
+      var leaderboardString = JSON.stringify(scoreArray);
+      localStorage.setItem('score', leaderboardString);
+    } else if (scoreString) {
+      var scoreArray = JSON.parse(scoreString);
+      scoreArray.push(lastPlayer);
+      var leaderboardString = JSON.stringify(scoreArray);
+      localStorage.setItem('score', leaderboardString);
+      var test = localStorage.getItem('score');
+      var testagain = JSON.parse(test);
+      toLeaderboard = testagain;
+    }
+  }
+
+  function setLeaderboard(array) {
+    array.sort(compare);
+
+    function compare(a, b) {
+      if (a.score > b.score) {
+        return -1;
+      }
+      if (a.score < b.score) {
+        return 1;
+      }
+      return 0;
+    }
+    var nameList = document.querySelector('#name');
+    var scoreList = document.querySelector('#score');
+    let nam = nameList.querySelectorAll('li');
+    nam.forEach(function (element, index) {
+      if (array[index]) {
+        element.innerHTML = array[index].name;
+      }
+    })
+    let scr = scoreList.querySelectorAll('li');
+    scr.forEach(function (element, index) {
+      if (array[index]) {
+
+        element.innerHTML = array[index].score;
+      }
+    })
+  }
+
 
   // -- initialize Splash screen on initial start
   createSplashScreen();
