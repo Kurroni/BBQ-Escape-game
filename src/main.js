@@ -97,7 +97,7 @@ function main() {
     gameOverScreen = buildDom(`
         <main class="game-over">
           <h1>You've been eaten!</h1>
-          <div><p class="game-player-name"></p>Your score: <span></span></div>
+          <div><p class="game-player-name"></p><br><p>Your score is:</p><span></span></div>
           <button class="btn-restart">try again</button>
         </main>
         <footer>
