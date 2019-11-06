@@ -10,12 +10,15 @@ function Game() {
     this.gameIsOver = false;
     this.gameScreen = null;
     this.score = 0;
+
 }
 
 Game.prototype.start = function () {
     this.canvasContainer = document.querySelector('.canvas-container');
     this.canvas = this.gameScreen.querySelector('canvas');
     this.ctx = this.canvas.getContext('2d');
+
+
 
     this.livesElement = this.gameScreen.querySelector('.lives .value');
     this.scoreElement = this.gameScreen.querySelector('.score .value');
