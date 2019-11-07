@@ -15,22 +15,17 @@ function Player(canvas, lives) {
 }
 
 Player.prototype.setDirection = function (direction) {
-    // +1 right  -1 left
     if (direction === 'left') this.direction = -1;
     else if (direction === 'right') this.direction = 1;
     this.x += this.direction * this.speed;
     console.log(this.x, this.y);
 };
 Player.prototype.moveLeft = function () {
-    this.x = this.x - 50;
+    this.x = this.x - 40;
 }
 Player.prototype.moveRight = function () {
-    this.x = this.x + 50;
+    this.x = this.x + 40;
 }
-// Player.prototype.setDirection = function () {
-//     this.x += this.direction * this.speed;
-//     console.log(this.x, this.y);
-// };
 
 Player.prototype.didCollide = function (enemy) {
     var playerLeft = this.x;
@@ -45,24 +40,21 @@ Player.prototype.didCollide = function (enemy) {
 
     // Check if the enemy intersects any of the player's sides
     var crossLeft = enemyLeft <= playerRight && enemyLeft >= playerLeft;
-    // var crossLeft = enemyLeft <= playerRight && enemyLeft >= playerLeft;
 
     var crossRight = enemyRight >= playerLeft && enemyRight <= playerRight;
-    // var crossRight = enemyRight >= playerRight && enemyLeft <= playerRight;
 
     var crossBottom = enemyBottom >= playerTop && enemyBottom <= playerBottom;
 
     var crossTop = enemyTop <= playerBottom && enemyTop >= playerTop;
-    //var crossTop = enemyTop <= playerBottom && enemyBottom >= playerTop;
-    var crossInside = enemyLeft <= playerLeft && enemyRight >= playerRight;
 
+    var crossInside = enemyLeft <= playerLeft && enemyRight >= playerRight;
 
     if ((crossInside || crossLeft || crossRight) && (crossTop || crossBottom)) {
         return true;
     }
     return false;
 };
-//KETCHUP
+// KETCHUP
 Player.prototype.didCollide = function (ketchup) {
     var playerLeft = this.x;
     var playerRight = this.x + this.width;
@@ -75,10 +67,8 @@ Player.prototype.didCollide = function (ketchup) {
     var ketchupBottom = ketchup.y + ketchup.height;
 
     var crossLeft = ketchupLeft <= playerRight && ketchupLeft >= playerLeft;
-    // var crossLeft = ketchupLeft <= playerRight && ketchupLeft >= playerLeft;
 
     var crossRight = ketchupRight >= playerLeft && ketchupRight <= playerRight;
-    // var crossRight = ketchupRight >= playerRight && ketchupLeft <= playerRight;
 
     var crossBottom = ketchupBottom >= playerTop && ketchupBottom <= playerBottom;
 
@@ -104,10 +94,8 @@ Player.prototype.didCollide = function (dog) {
     var dogBottom = dog.y + dog.height;
 
     var crossLeft = dogLeft <= playerRight && dogLeft >= playerLeft;
-    // var crossLeft = dogLeft <= playerRight && dogLeft >= playerLeft;
 
     var crossRight = dogRight >= playerLeft && dogRight <= playerRight;
-    // var crossRight = dogRight >= playerRight && dogLeft <= playerRight;
 
     var crossBottom = dogBottom >= playerTop && dogBottom <= playerBottom;
 
@@ -121,22 +109,11 @@ Player.prototype.didCollide = function (dog) {
     return false;
 };
 
-
-// Player.prototype.handleScreenCollision = function () {
-//     this.x = this.x + this.direction * this.speed;
-//     var screenLeft = 0;
-//     var screenRight = this.canvas.width;
-
-//     // how to stop the edge of the player exactly with the edge of the screen?
-//     if (this.x > (screenRight - this.size)) this.direction = -1;
-//     else if (this.x < screenLeft) this.direction = 1;
-// };
 Player.prototype.handleScreenCollision = function () {
     this.x = this.x + this.direction * this.speed;
     var screenLeft = 0;
     var screenRight = this.canvas.width;
 
-    // how to stop the edge of the player exactly with the edge of the screen?
     if (this.x + this.width / 2 > screenRight) {
         this.x = (screenLeft - this.width / 2);
     } else if (this.x + this.width / 2 < screenLeft) {
@@ -147,10 +124,6 @@ Player.prototype.handleScreenCollision = function () {
 Player.prototype.removeLife = function () {
     this.lives -= 1;
 };
-// this is for ketchup
-// Player.prototype.addScore = function () {
-//     this.score += 2000;
-// }
 
 Player.prototype.draw = function () {
     this.image.src = './img/hamburger_cut.png';

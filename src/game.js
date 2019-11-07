@@ -10,6 +10,10 @@ function Game() {
     this.gameIsOver = false;
     this.gameScreen = null;
     this.score = 0;
+    this.mainMusic = new Audio("./sound/Raul_Cabezali_-_Country.mp3");
+    this.dogSound = new Audio("./sound/Dog Bite-SoundBible.com-107030898.mp3");
+    this.redneckSound = new Audio("./sound/old man.mp3");
+    this.ketchupSound = new Audio("./sound/Slurping 2-SoundBible.com-1269549524.mp3");
 
 }
 
@@ -17,7 +21,8 @@ Game.prototype.start = function () {
     this.canvasContainer = document.querySelector('.canvas-container');
     this.canvas = this.gameScreen.querySelector('canvas');
     this.ctx = this.canvas.getContext('2d');
-
+    this.mainMusic.play();
+    this.mainMusic.loop = true;
 
 
     this.livesElement = this.gameScreen.querySelector('.lives .value');
@@ -30,67 +35,61 @@ Game.prototype.start = function () {
 
     this.player = new Player(this.canvas, 3);
 
-
-
     // Event listener callback function
     this.handleKeyDown = function (event) {
 
         if (event.key === 'ArrowLeft') {
-            console.log('LEFT');
-            // this.player.setDirection('left');
             this.player.moveLeft();
         } else if (event.key === 'ArrowRight') {
-            console.log('RIGHT');
+
             this.player.moveRight();
-            //this.player.setDirection('right');
         }
     };
 
-    // //add even listener for moving the player
+    // add even listener for moving the player
     document.body.addEventListener(
         'keydown',
         this.handleKeyDown.bind(this)
     );
-
     this.startLoop();
 };
 
 Game.prototype.startLoop = function () {
     var loop = function () {
 
-        // 1. Create new enemies randomly
+        // Create new enemies randomly
         if (Math.random() > 0.985) {
             var randomX = (this.canvas.width - 90) * Math.random();
             var newEnemy = new Enemy(this.canvas, randomX, 3);
             this.enemies.push(newEnemy);
         }
 
-        //i'm adding ketchup
+        // adding ketchup
         if (Math.random() > 0.996) {
             var randomX = this.canvas.width * Math.random();
             var newKetchup = new Ketchup(this.canvas, randomX, 5);
             this.ketchups.push(newKetchup);
         }
+        // adding dog
         if (Math.random() > 0.998) {
             var randomX = (this.canvas.width - 90) * Math.random();
             var newDog = new Dog(this.canvas, randomX, 4);
             this.dogs.push(newDog);
         }
 
-        // 2. Check if player had hit any enemy (check all enemies)
+        // Check if player had hit any enemy (check all enemies)
         this.checkCollisions();
 
-        // 3. Check if player is going off the screen
+        // Check if player is going off the screen
         this.player.handleScreenCollision();
 
-        // 4. Move existing enemies
-        // 5. Check if any enemy is going of the screen
+        // Move existing enemies and check if any enemy is going of the screen
         this.enemies = this.enemies.filter(function (enemy) {
             enemy.updatePosition();
             return enemy.isInsideScreen();
         });
 
-        //ketchup code
+        // ketchup code
         this.ketchups = this.ketchups.filter(function (ketchup) {
             ketchup.updatePosition();
             return ketchup.isInsideScreen();
@@ -101,11 +100,11 @@ Game.prototype.startLoop = function () {
         });
 
 
-        // 2. CLEAR THE CANVAS
+        // CLEAR THE CANVAS
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
 
-        // 3. UPDATE THE CANVAS
+        // UPDATE THE CANVAS
         // Draw the player
         this.player.draw();
 
@@ -120,7 +119,7 @@ Game.prototype.startLoop = function () {
             dog.draw();
         });
 
-        // 4. TERMINATE LOOP IF GAME IS OVER
+        // TERMINATE LOOP IF GAME IS OVER
         if (!this.gameIsOver) {
             window.requestAnimationFrame(loop);
         }
@@ -141,22 +140,22 @@ Game.prototype.checkCollisions = function () {
 
             this.player.removeLife();
             console.log('lives', this.player.lives);
+            this.redneckSound.play();
 
             // Move the enemy off screen to the left
             enemy.y = this.canvas.height + enemy.offsetHeight;
 
-            //after styling game screen - uncomment!!!
             if (this.player.lives === 0) {
                 this.gameOver();
             }
         }
     }, this);
 
-    //adding ketchup collision
+    // adding ketchup collision
     this.ketchups.forEach(function (ketchup) {
         if (this.player.didCollide(ketchup)) {
-            console.log('Ketchup collision')
-            this.score += 2000;
+            this.score += 1000;
+            this.ketchupSound.play();
 
             // Move the ketchup off screen to the bottom
             ketchup.y = this.canvas.height + ketchup.size;
@@ -169,11 +168,11 @@ Game.prototype.checkCollisions = function () {
 
             this.player.removeLife();
             console.log('lives', this.player.lives);
+            this.dogSound.play();
 
             // Move the dog off screen to the left
             dog.y = this.canvas.height + dog.height;
 
-            //after styling game screen - uncomment!!!
             if (this.player.lives === 0) {
                 this.gameOver();
             }
@@ -199,8 +198,11 @@ Game.prototype.gameOver = function () {
     this.gameIsOver = true;
 
     this.onGameOverCallback();
+    this.mainMusic.pause();
+    this.mainMusic.currentTime = 0;
+
 };
 
 Game.prototype.removeGameScreen = function () {
-    this.gameScreen.remove(); // remove() is the DOM method which removes the DOM Node  
+    this.gameScreen.remove();
 };

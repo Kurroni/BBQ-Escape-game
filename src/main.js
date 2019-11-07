@@ -13,14 +13,13 @@ function main() {
   var gameOverScreen;
   var playersName;
   var toLeaderboard = [];
-  var scorePlayer;
 
-  // -- splash screen
+  //  splash screen
 
   function createSplashScreen() {
     splashScreen = buildDom(`
     <main class="start-container">
-    <img class="redneck-start" src="../img/red+fork (1)Right.blured.png">
+    <img class="redneck-start" src="./img/red+fork (1)Right.blured.png">
       <h1 class="start-header">
       <img src="https://fontmeme.com/permalink/191105/66b052c755e75bdf937aa1d462c49024.png" alt="hungry-hungry-hippos-font" border="0"></h1>
       <div class="rules-container">
@@ -37,18 +36,16 @@ function main() {
       </div>
       <div class="thumb-down">
         <i class="far fa-thumbs-down">:</i>
-        <img src="./img/redneck cut.png" alt="mad redneck character">
+        <img src="./img/red+fork (1).png" alt="mad redneck character">
         <img class="terrier" src="./img/bull terrier.png" alt="bullterrier">
       </div>
       </div>
-      <input class ="name-input" type="text" id="name" name="name"
+      <input class ="name-input" type="text" id="name" name="name" required maxlength="10"
       placeholder="Put your name here"/>
       <button class="start-button">run!</button>
          </main>
            `);
     document.body.appendChild(splashScreen);
-
-
 
     var startButton = splashScreen.querySelector("button");
 
@@ -82,33 +79,27 @@ function main() {
       `);
     document.body.appendChild(gameScreen);
 
-    var gamePlayerName = document.querySelector('.game-player-name');
+    var gamePlayerName = document.querySelector(".game-player-name");
     gamePlayerName.innerHTML = playersName;
 
     return gameScreen;
-
   }
 
   function removeGameScreen() {
     game.removeGameScreen();
   }
 
-  // -- game over screen
+  // game over screen
 
   function createGameOverScreen(score) {
     gameOverScreen = buildDom(`
         <main class="game-over">
           <h1>You've been eaten!</h1>
-          <div class="player-score.container"><p class="game-player-name"></p><br><p>Your score is:</p><span></span></div>
+          <div class="player-score.container"><p class="game-player-name"></p><p>your score is:</p><span></span></div>
           <div class = "leaderboardcontainter">
             <div>
-              <ol class = "leaderboardlist" id = "name">
+              <ol class = "leaderboardlist" id ="name">
                 <header>Top Players</header>
-                  <li>________</li>
-                  <li>________</li>
-                  <li>________</li>
-                  <li>________</li>
-                  <li>________</li>
                   <li>________</li>
                   <li>________</li>
                   <li>________</li>
@@ -117,19 +108,15 @@ function main() {
               </ol>
             </div>
             <div>
-              <ol class = "secondleaderboardlist" id = "score">
-                <header>Score</header>
+              <ul class = "secondleaderboardlist" id ="score">
+                <header>Player's score</header>
                   <li>________</li>
                   <li>________</li>
                   <li>________</li>
                   <li>________</li>
                   <li>________</li>
-                  <li>________</li>
-                  <li>________</li>
-                  <li>________</li>
-                  <li>________</li>
-                  <li>________</li>
-              </ol>
+              </ul>
+            </div>
             </div>
           <button class="btn-restart">try again</button>
         </main>
@@ -138,8 +125,6 @@ function main() {
         </footer>
       `);
 
-
-
     var button = gameOverScreen.querySelector("button");
     button.addEventListener("click", startGame);
 
@@ -147,9 +132,15 @@ function main() {
     span.innerText = score;
 
     document.body.appendChild(gameOverScreen);
+
+
+    var scoreString = localStorage.getItem("score");
+    var scoreArray = JSON.parse(scoreString);
+    toLeaderboard = scoreArray;
+
     setLeaderboard(toLeaderboard);
 
-    var gamePlayerName = document.querySelector('.game-player-name');
+    var gamePlayerName = document.querySelector(".game-player-name");
     gamePlayerName.innerHTML = playersName;
   }
 
@@ -159,56 +150,60 @@ function main() {
     }
   }
 
-  // -- Setting the game state
+  // Setting the game state
 
   function startGame() {
     removeSplashScreen();
     removeGameOverScreen();
 
-    playersName = splashScreen.querySelector('.name-input').value;
-    if (playersName == '') {
-      playersName = 'the guest';
+    playersName = splashScreen.querySelector(".name-input").value;
+    if (playersName == "") {
+      playersName = "the guest";
     }
 
     game = new Game();
     game.gameScreen = createGameScreen();
 
     game.start();
+
     // End the game
     game.passGameOverCallback(function () {
-      // <-- UPDATE
+      updateScore();
       gameOver(game.score);
-      updateScore(); // <-- UPDATE
-    }); //	<-- UPDATE
+    });
   }
 
   function gameOver(score) {
     removeGameScreen();
     createGameOverScreen(score);
 
-    playersName = splashScreen.querySelector('.name-input').value;
-    if (playersName == '') {
-      playersName = 'the guest';
+    playersName = splashScreen.querySelector(".name-input").value;
+    if (playersName == "") {
+      playersName = "the guest";
     }
   }
-  //below Griffith's code for leader board
+  // local storage for leader board
   function updateScore() {
     var lastPlayer = {
-      name: name,
-      score: scorePlayer
+      name: playersName,
+      score: game.score
     };
-    var scoreString = localStorage.getItem('score');
+    console.log("test", lastPlayer);
+
+    var scoreString = localStorage.getItem("score");
+
     if (!scoreString) {
-      var scoreArray = []
+      var scoreArray = [];
       scoreArray.push(lastPlayer);
       var leaderboardString = JSON.stringify(scoreArray);
-      localStorage.setItem('score', leaderboardString);
+      localStorage.setItem("score", leaderboardString);
+
     } else if (scoreString) {
       var scoreArray = JSON.parse(scoreString);
       scoreArray.push(lastPlayer);
       var leaderboardString = JSON.stringify(scoreArray);
-      localStorage.setItem('score', leaderboardString);
-      var test = localStorage.getItem('score');
+      localStorage.setItem("score", leaderboardString);
+      var test = localStorage.getItem("score");
       var testagain = JSON.parse(test);
       toLeaderboard = testagain;
     }
@@ -226,25 +221,23 @@ function main() {
       }
       return 0;
     }
-    var nameList = document.querySelector('#name');
-    var scoreList = document.querySelector('#score');
-    let nam = nameList.querySelectorAll('li');
+    var nameList = document.querySelector("#name");
+    var scoreList = document.querySelector("#score");
+    let nam = nameList.querySelectorAll("li");
     nam.forEach(function (element, index) {
       if (array[index]) {
         element.innerHTML = array[index].name;
       }
-    })
-    let scr = scoreList.querySelectorAll('li');
+    });
+    let scr = scoreList.querySelectorAll("li");
     scr.forEach(function (element, index) {
       if (array[index]) {
-
         element.innerHTML = array[index].score;
       }
-    })
+    });
   }
 
-
-  // -- initialize Splash screen on initial start
+  // initialize Splash screen on initial start
   createSplashScreen();
 }
 
