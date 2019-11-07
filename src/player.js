@@ -21,10 +21,10 @@ Player.prototype.setDirection = function (direction) {
     console.log(this.x, this.y);
 };
 Player.prototype.moveLeft = function () {
-    this.x = this.x - 50;
+    this.x = this.x - 40;
 }
 Player.prototype.moveRight = function () {
-    this.x = this.x + 50;
+    this.x = this.x + 40;
 }
 
 Player.prototype.didCollide = function (enemy) {
@@ -94,10 +94,8 @@ Player.prototype.didCollide = function (dog) {
     var dogBottom = dog.y + dog.height;
 
     var crossLeft = dogLeft <= playerRight && dogLeft >= playerLeft;
-    // var crossLeft = dogLeft <= playerRight && dogLeft >= playerLeft;
 
     var crossRight = dogRight >= playerLeft && dogRight <= playerRight;
-    // var crossRight = dogRight >= playerRight && dogLeft <= playerRight;
 
     var crossBottom = dogBottom >= playerTop && dogBottom <= playerBottom;
 
@@ -111,22 +109,11 @@ Player.prototype.didCollide = function (dog) {
     return false;
 };
 
-
-// Player.prototype.handleScreenCollision = function () {
-//     this.x = this.x + this.direction * this.speed;
-//     var screenLeft = 0;
-//     var screenRight = this.canvas.width;
-
-//     // how to stop the edge of the player exactly with the edge of the screen?
-//     if (this.x > (screenRight - this.size)) this.direction = -1;
-//     else if (this.x < screenLeft) this.direction = 1;
-// };
 Player.prototype.handleScreenCollision = function () {
     this.x = this.x + this.direction * this.speed;
     var screenLeft = 0;
     var screenRight = this.canvas.width;
 
-    // how to stop the edge of the player exactly with the edge of the screen?
     if (this.x + this.width / 2 > screenRight) {
         this.x = (screenLeft - this.width / 2);
     } else if (this.x + this.width / 2 < screenLeft) {
@@ -137,10 +124,6 @@ Player.prototype.handleScreenCollision = function () {
 Player.prototype.removeLife = function () {
     this.lives -= 1;
 };
-// this is for ketchup
-// Player.prototype.addScore = function () {
-//     this.score += 2000;
-// }
 
 Player.prototype.draw = function () {
     this.image.src = './img/hamburger_cut.png';

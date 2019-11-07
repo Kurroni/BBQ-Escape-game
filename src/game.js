@@ -10,10 +10,10 @@ function Game() {
     this.gameIsOver = false;
     this.gameScreen = null;
     this.score = 0;
-    this.mainMusic = new Audio("../sound/Raul_Cabezali_-_Country.mp3");
-    this.dogSound = new Audio("../sound/Dog Bite-SoundBible.com-107030898.mp3");
-    this.redneckSound = new Audio("../sound/old man.mp3");
-    this.ketchupSound = new Audio("../sound/Slurping 2-SoundBible.com-1269549524.mp3");
+    this.mainMusic = new Audio("./sound/Raul_Cabezali_-_Country.mp3");
+    this.dogSound = new Audio("./sound/Dog Bite-SoundBible.com-107030898.mp3");
+    this.redneckSound = new Audio("./sound/old man.mp3");
+    this.ketchupSound = new Audio("./sound/Slurping 2-SoundBible.com-1269549524.mp3");
 
 }
 
@@ -154,7 +154,7 @@ Game.prototype.checkCollisions = function () {
     // adding ketchup collision
     this.ketchups.forEach(function (ketchup) {
         if (this.player.didCollide(ketchup)) {
-            this.score += 2000;
+            this.score += 1000;
             this.ketchupSound.play();
 
             // Move the ketchup off screen to the bottom
