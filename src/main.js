@@ -13,9 +13,8 @@ function main() {
   var gameOverScreen;
   var playersName;
   var toLeaderboard = [];
-  //var scorePlayer;
 
-  // -- splash screen
+  //  splash screen
 
   function createSplashScreen() {
     splashScreen = buildDom(`
@@ -37,7 +36,7 @@ function main() {
       </div>
       <div class="thumb-down">
         <i class="far fa-thumbs-down">:</i>
-        <img src="./img/redneck cut.png" alt="mad redneck character">
+        <img src="./img/red+fork (1).png" alt="mad redneck character">
         <img class="terrier" src="./img/bull terrier.png" alt="bullterrier">
       </div>
       </div>
@@ -90,7 +89,7 @@ function main() {
     game.removeGameScreen();
   }
 
-  // -- game over screen
+  // game over screen
 
   function createGameOverScreen(score) {
     gameOverScreen = buildDom(`
@@ -151,7 +150,7 @@ function main() {
     }
   }
 
-  // -- Setting the game state
+  // Setting the game state
 
   function startGame() {
     removeSplashScreen();
@@ -169,10 +168,9 @@ function main() {
 
     // End the game
     game.passGameOverCallback(function () {
-      // <-- UPDATE
-      updateScore(); // <-- UPDATE
+      updateScore();
       gameOver(game.score);
-    }); //	<-- UPDATE
+    });
   }
 
   function gameOver(score) {
@@ -184,7 +182,7 @@ function main() {
       playersName = "the guest";
     }
   }
-  //below Griffith's code for leader board
+  // local storage for leader board
   function updateScore() {
     var lastPlayer = {
       name: playersName,
@@ -239,7 +237,7 @@ function main() {
     });
   }
 
-  // -- initialize Splash screen on initial start
+  // initialize Splash screen on initial start
   createSplashScreen();
 }
 

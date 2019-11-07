@@ -21,6 +21,5 @@ Ketchup.prototype.updatePosition = function () {
 };
 
 Ketchup.prototype.isInsideScreen = function () {
-    // if x plus half of its size is smaller then 0 return
     return this.y - this.height / 2 < this.canvas.height;
 };
