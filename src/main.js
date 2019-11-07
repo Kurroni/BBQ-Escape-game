@@ -110,7 +110,7 @@ function main() {
             </div>
             <div>
               <ul class = "secondleaderboardlist" id ="score">
-                <header>Score</header>
+                <header>Player's score</header>
                   <li>________</li>
                   <li>________</li>
                   <li>________</li>
