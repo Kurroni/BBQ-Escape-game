@@ -11,6 +11,7 @@ html {
 *:after {
   box-sizing: inherit;
 }
+
 html,
 body {
   margin: 0;
@@ -201,19 +202,25 @@ div.thumb-down i {
   height: 100%;
 }
 
+p.game-player-name {
+  font-weight: bold;
+  color: rgb(18, 129, 18);
+  line-height: 1.5em;
+}
+
 .game header {
   height: 50px;
   display: flex;
   align-items: center;
 }
 
-.game .lives {
-  flex: 1;
-}
-
+.game .lives,
 .game .score {
   flex: 1;
+  padding-bottom: 20px;
+  font-size: 1.3em;
 }
+
 
 .game canvas {
   width: 600px;
@@ -272,6 +279,12 @@ main.game-over {
   margin: 0 auto;
 }
 
+.game-over p.game-player-name {
+  font-weight: bold;
+  color: rgb(18, 129, 18);
+  line-height: 1.5em;
+}
+
 .btn-restart {
   font-size: 5rem;
   font-weight: bold;
@@ -297,23 +310,26 @@ main.game-over {
   display: inline-flex;
   flex-direction: row;
   justify-content: space-around;
-  width: 20%;
+  width: 250px;
   height: 25%;
   background-color: rgba(214, 133, 133, 0.767);
-  margin: 20px 20px 20px;
+  margin: 20px 20px 20px 40px;
   padding: 10px;
   border-radius: 20px;
   border: 2px solid rgb(190, 70, 70);
 }
+
 ol.leaderboardlist {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   padding: 20px;
 }
+
 ul.secondleaderboardlist {
   padding: 20px;
 }
+
 
 /*
 .leaderboardcontainer {
