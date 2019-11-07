@@ -156,7 +156,12 @@ div.thumb-down i {
 }
 
 .start-container input {
-  margin: 0 auto;
+  margin: 110px auto 0;
+  font-size: 1rem;
+  text-align: center;
+  line-height: 1.5rem;
+  border: 2px solid rgb(62, 102, 233);
+  background-color: rgb(224, 216, 216);
 }
 
 .start-button {
@@ -167,7 +172,7 @@ div.thumb-down i {
   border-radius: 50%;
   box-shadow: 0 0 0 4px yellow, 0 0 0 10px rgb(62, 102, 233);
   padding: 15px 25px 15px 25px;
-  margin: 100px auto 50px;
+  margin: 25px auto 50px;
   background-color: rgb(62, 102, 233);
   text-transform: uppercase;
   cursor: pointer;
@@ -177,7 +182,7 @@ div.thumb-down i {
   color: rgb(62, 102, 233);
   border: 3px solid rgb(62, 102, 233);
   box-shadow: 0 0 0 4px rgb(62, 102, 233), 0 0 0 10px yellow;
-  margin: 100px auto 50px;
+
   background-color: yellow;
 }
 
@@ -249,7 +254,7 @@ main.game-over {
   font-size: 5rem;
   line-height: 5rem;
   text-align: center;
-  margin-bottom: 100px;
+  margin-bottom: 50px;
   background-color: rgba(255, 255, 255, 0.5);
   padding: 20px;
 }
@@ -257,13 +262,13 @@ main.game-over {
 .game-over p,
 .game-over span {
   display: block;
-  font-size: 3rem;
-  line-height: 5rem;
+  font-size: 2rem;
+  line-height: 3rem;
   text-align: center;
   color: black;
   font-weight: bold;
   background-color: rgba(255, 255, 255, 0.5);
-  width: 45%;
+  width: 40%;
   margin: 0 auto;
 }
 
@@ -275,7 +280,7 @@ main.game-over {
   border-radius: 25%;
   box-shadow: 0 0 0 4px yellow, 0 0 0 10px rgb(62, 102, 233);
   padding: 15px 25px 15px 25px;
-  margin: 250px auto 50px;
+  margin: 50px auto 50px;
   background-color: rgb(62, 102, 233);
   text-transform: uppercase;
   cursor: pointer;
@@ -285,6 +290,56 @@ main.game-over {
   color: rgb(62, 102, 233);
   border: 3px solid rgb(62, 102, 233);
   box-shadow: 0 0 0 4px rgb(62, 102, 233), 0 0 0 10px yellow;
-  margin: 250px auto 50px;
   background-color: yellow;
 }
+
+.leaderboardcontainter {
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 20%;
+  height: 25%;
+  background-color: rgba(214, 133, 133, 0.767);
+  margin: 20px 20px 20px;
+  padding: 10px;
+  border-radius: 20px;
+  border: 2px solid rgb(190, 70, 70);
+}
+ol.leaderboardlist {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 20px;
+}
+ul.secondleaderboardlist {
+  padding: 20px;
+}
+
+/*
+.leaderboardcontainer {
+  bottom: 30%;
+  left: 2%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  background-color: #fff;
+}
+.leaderboardcontainer div {
+  position: relative;
+  background-color: #fff;
+}
+ol#name {
+  position: absolute;
+  width: 130px;
+  bottom: 400px;
+  left: 20px;
+  background-color: #fff;
+  }
+ul#score {
+  position: absolute;
+  width: 130px;
+  bottom: 400px;
+  left: 150px;
+  background-color: #fff;
+  }
+*/
