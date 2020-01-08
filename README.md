@@ -1,7 +1,7 @@
 # BBQ-Escape-game
 
 ## Description
-BigBaQyard Escape is a game where the player (a burger) has to avoid to touch with the enemy (a hungry farmer). The player gets points for the played time. After touching the bonus (a ketchups' bottle) the player gets extra points. The game has no end. The player has 2 lives. After the 1st touch of the enemy player contine the game, after the 2nd touch the game is over.
+BigBaQyard Escape is a game where the player (a burger) has to avoid to touch with the enemy (a hungry farmer). The player gets points for the played time. After touching the bonus (a ketchups' bottle) the player gets extra points. There is no finish line. The player has 2 lives. After the 1st touch of the enemy player contine the game, after the 2nd touch the game is over.
 
 
 ## MVP (DOM - CANVAS)
