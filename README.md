@@ -119,9 +119,9 @@ Player.prototype.handleScreenCollision = function() {}
 
 ### Git
 URls for the project repo and deploy
-[Link Repo](#)
+[Link Repo](https://github.com/Kurroni/BBQ-Escape-game)
 
 
 ### Slides
 URls for the project presentation (slides)
-[Link Slides.com](#)
+[Link Slides.com](https://docs.google.com/presentation/d/1256lkyUKjh8xfiX1qh0tAA7cr1GCDDNIO-uK8Arie00/edit?usp=sharing)
